@@ -58,6 +58,10 @@ public class Block extends JButton{
 		return this.storedValue;			// gets the block's stored value when called
 	}
 	
+	public int getStoredValueTwo() {
+		return this.storedValueTwo;			// gets the block's stored valueTwo when called
+	}
+	
 	public Integer getAnswer() {			// not implemented yet, not sure if redundant or on TODO
 		// TODO
 		return 0;
@@ -73,6 +77,13 @@ public class Block extends JButton{
 		this.col = posCol;
 	}
 	
+	public int[] getPosition(){			
+		int[] pos = new int[2];
+		pos[0] = this.row;
+		pos[1] = this.col;
+		return pos;
+	}
+	
 	public Integer getRow(){			
 		return this.row;
 	}
@@ -86,7 +97,7 @@ public class Block extends JButton{
 	}
 	
 	public void paintComponent(Graphics g){
-	    if (this.blockType==1 && this.storedValue != 0 && this.storedValueTwo != 0) {   
+	    if (this.blockType==1) {   
 	    	super.paintComponent(g);
 	    	g.drawLine(0, 0, width-1, height-1 );
 	    } else {
