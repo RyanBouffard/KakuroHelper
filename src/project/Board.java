@@ -59,7 +59,7 @@ public class Board extends JFrame {
 		gamePanel= new JPanel();
 		mainPanel = new JPanel();
 		setTitle("Kakuro v1.0");
-		setSize(400, 500);
+		setSize(500, 500);
 
 		mainPanel.setLayout(new BorderLayout());
 		c.add(mainPanel);
@@ -181,7 +181,7 @@ public class Board extends JFrame {
 				System.out.println("Opening puzzle");
 				readGame("Resources/puzzle3.txt");
 			}
-			
+					
 			else if (arg0.getActionCommand().equals("Saved Puzzle")) {			// calls method to open/read saved puzzle
 				System.out.println("Opening puzzle");
 				readGame("Resources/savedpuzzle.txt");
@@ -200,10 +200,11 @@ public class Board extends JFrame {
 			gamePanel = new JPanel();
 		    JLabel myButton1_Label_E;
 		    JLabel myButton1_Label_S = new JLabel();
-			gamePanel.setLayout(new GridLayout((0), (5)));
+		    int lineCount = 0;
 			try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
 			    String line;
 			    while ((line = br.readLine()) != null) {
+			    	lineCount +=1;
 			    	String[] values = line.split(",");
 			    	int bt = Integer.parseInt(values[0]);
 			    	int sv = Integer.parseInt(values[1]);
@@ -272,11 +273,13 @@ public class Board extends JFrame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			block2DArray = new Block[5][5];						
+			int sqrtLineCount = (int) Math.sqrt(lineCount);
+			gamePanel.setLayout(new GridLayout((0), (sqrtLineCount)));
+
+			block2DArray = new Block[sqrtLineCount][sqrtLineCount];						
 			int k = 0;
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<5; j++) {
+			for (int i=0; i<block2DArray.length; i++) {
+				for (int j=0; j<block2DArray.length; j++) {
 					block2DArray[i][j] = blockList.get(k); 	
 					block2DArray[i][j].setPosition(i, j);
 					k+=1;
@@ -592,8 +595,8 @@ public class Board extends JFrame {
 //			if all blocks filled, and correct, return true
 			int questionNum = 0;
 			int solvedQuestions = 0;
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<5; j++) {
+			for (int i=0; i<block2DArray.length; i++) {
+				for (int j=0; j<block2DArray.length; j++) {
 					if (block2DArray[i][j].getType()==1) {
 						int row = block2DArray[i][j].getRow();
 						int column = block2DArray[i][j].getCol();
