@@ -135,8 +135,6 @@ public class Board extends JFrame {
         timer.start();
         
 		setVisible(true);
-
-        //when the game is completed should have a timer.stop();
 	}
 	
     public void updateClock() {
@@ -156,7 +154,7 @@ public class Board extends JFrame {
 		 * Knows when action is performed, grabs the object associated with the action.
 		 */
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println(arg0.getActionCommand());
+//			System.out.println(arg0.getActionCommand());
 			//certain commands happen here, if menus are clicked, then certain actions will follow
 			if (arg0.getActionCommand().equals("Reset")) {
 				System.out.println("Resetting Game");
@@ -687,7 +685,7 @@ public class Board extends JFrame {
 		    		System.out.println("YOU WON!");
 		    		timer.stop();
 		    	} else {
-		    		System.out.println("keep going");
+//		    		System.out.println("keep going");
 		    	}
 		}
 
