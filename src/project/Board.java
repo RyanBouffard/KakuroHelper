@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -167,26 +169,26 @@ public class Board extends JFrame {
 			}
 			else if (arg0.getActionCommand().equals("Easy Puzzle 1")) {			// calls method to open/read main puzzle
 				System.out.println("Opening puzzle");
-				readGame("Resources/puzzle1.txt");
+				readGame("resources/puzzle1.txt");
 			}
 			
 			else if (arg0.getActionCommand().equals("Easy Puzzle 2")) {			// calls method to open/read main puzzle
 				System.out.println("Opening puzzle");
-				readGame("Resources/puzzle2.txt");
+				readGame("resources/puzzle2.txt");
 			}
 			
 			else if (arg0.getActionCommand().equals("Easy Puzzle 3")) {			// calls method to open/read main puzzle
 				System.out.println("Opening puzzle");
-				readGame("Resources/puzzle3.txt");
+				readGame("resources/puzzle3.txt");
 			}
 					
 			else if (arg0.getActionCommand().equals("Saved Puzzle")) {			// calls method to open/read saved puzzle
 				System.out.println("Opening puzzle");
-				readGame("Resources/savedpuzzle.txt");
+				readGame("resources/savedpuzzle.txt");
 			}
 			else if (arg0.getActionCommand().equals("Save")) {					// calls method to save puzzle to text file
 				System.out.println("Saving Game");
-				saveGame("Resources/savedpuzzle.txt");
+				saveGame("resources/savedpuzzle.txt");
 			}
 			else if (arg0.getActionCommand().equals("Exit")) {					// exits the program with no time delay
 				System.out.println("Exiting program");
@@ -199,7 +201,10 @@ public class Board extends JFrame {
 		    JLabel myButton1_Label_E;
 		    JLabel myButton1_Label_S = new JLabel();
 		    int lineCount = 0;
-			try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+		    String newFileName = filename.substring(10, filename.length());
+		    InputStream in = this.getClass().getClassLoader().getResourceAsStream(newFileName);
+		    InputStreamReader ready = new InputStreamReader(in);
+			try (BufferedReader br = new BufferedReader(ready)) {
 			    String line;
 			    while ((line = br.readLine()) != null) {
 			    	lineCount +=1;
